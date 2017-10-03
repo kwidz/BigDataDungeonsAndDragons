@@ -1,10 +1,14 @@
 var mapFunction1 = function() {
-	emit(this.name, this.level,this.isWizard, this.components, this.description);
-};
-var reduceFunction1 = function(keyName, keyLevel, keyIsWizard, keyTableComp, keyDescr) {
-	if(keyLevel <4 && keyIsWizard && (keyTableComp.indexOf(" V") != -1 )){
-        return keyName + " " + keyDescr;
+	if(this.isWizard){
+emit(this.name);
+	}else{
+emit("NON");
 	}
+
+	
+};
+var reduceFunction1 = function(result) {
+        return result ;
 	
 };
 db.spells.mapReduce(
@@ -12,3 +16,14 @@ db.spells.mapReduce(
 	reduceFunction1,
 	{ out: "map_reduce_saving_spell" }
 	)
+
+//&& data.isWizard  == true && (data.components.indexOf(" V") != -1 )
+
+/*	emit(this.name, {
+		"level" : this.level,
+		"isWizard" : this.isWizard,
+		"components" : this.components,
+		"description" : this.description
+	});*/
+
+//	if(this.isWizard && this.level<4 && (data.components.indexOf(" V") != -1 ){
