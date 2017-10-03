@@ -1,0 +1,17 @@
+[
+   {
+      "name":"Acid Arrow",
+      "level":2,
+      "isWizard":true,
+      "components":[
+         " V",
+         " S",
+         " M (rhubarb leaf and an adder's stomach)",
+         " F (a dart)"
+      ],
+      "spell_resistance":true,
+      "description":[
+         "An arrow of acid springs from your hand and speeds to its target. You must succeed on a ranged touch attack to hit your target. The arrow deals 2d4 points of acid damage with no splash damage. For every three caster levels you possess, the acid, unless neutralized, lasts for another round (to a maximum of 6 additional rounds at 18th level), dealing another 2d4 points of damage in each round."
+      ]
+   }
+]
