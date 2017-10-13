@@ -41,13 +41,16 @@ MongoClient.connect('mongodb://localhost:27017/DandDspells', function(err, db) {
    	.then(function (docs)
    	{
    		for(var i=0;i<docs.length;i++){
-   			  console.log(docs[i]);
-   				/*var boolSortUtilisable = docs[i].value.sortUtilisable;
-   				console.log(boolSortUtilisable);
-   				
+   			  //console.log(docs[i]);
+   			  if(docs[i] != null){
+   			  	if(docs[i].value != null){
+   			  		var boolSortUtilisable = docs[i].value.sortUtilisable;
    				if(boolSortUtilisable == true){
    					console.log(docs[i]._id);
-   				}*/
+   				}
+   			  	}
+   			  }
+   				
 
    			
    		}
