@@ -3,43 +3,40 @@
 */
 
 var MongoClient = require('mongodb').MongoClient(),
-   test = require('assert');
+test = require('assert');
 MongoClient.connect('mongodb://localhost:27017/DandDspells', function(err, db) {
 
    // Create a test collection
    var collection = db.collection('spells');
 
+   var map = function () {
+
+   	var level = this.level;
+   	var isWizard = this.isWizard;
+   	var components = this.components;
+   	var description = this.description;
+   	var name = this.name;
+   	var sortUtilisable = true;
+
+   	if(isWizard == true  && level<4 && (components.indexOf(" V") != -1)){
+   		sortUtilisable = "oui";
+   	}else{
+		sortUtilisable = "non";
+   	}
+   	var obj= {level:level, isWizard:isWizard,components:components,sortUtilisable:sortUtilisable};
+	emit(this.name,obj);
+
+   };
 
 
+   var reduce = function (key, values)
+   {
+   		emit(key,values);
+   };
 
-
-       //Map utilise l'objet this
-       var map = function () {
-
-          	var level = this.level
-			var isWizard = this.isWizard
-			var components = this.components
-			var description = this.description
-			var name = this.name
-           // print("Full objet emit");
-           //print(vertex, this);
-           emit(level,isWizard); //Re-émettre la même chose
-
-
-       };
-
-       //Find lowest distance and write it
-       var reduce = function (key, values)
-       {
-       emit(key,values);
-       };
-
-       //tf = test function
-    
-           // Peform the map reduce
    collection.mapReduce(map, reduce, {out: {replace: "spells2"}})
-           
-db.close();
-console.log("fin");
 
- })
+   db.close();
+   console.log("fin");
+
+})
