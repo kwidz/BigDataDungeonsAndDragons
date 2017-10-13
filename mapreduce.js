@@ -1,16 +1,27 @@
 var mapFunction1 = function() {
-	if(this.isWizard){
-emit(this.name);
-	}else{
-emit("NON");
-	}
-
+	var level = this.level,
+	var isWizard = this.isWizard
+	var components = this.components
+	var description = this.description
 	
+	if( this.isWizard == false ){
+		return;
+	}
+	if( his.level>4){
+		return;
+	}
+	if( (data.components.indexOf(" V") == -1){
+		return;
+	}
+	var objet = {level:level, isWizard=isWizard,description=description}
+
+	emit(description,objet)
+
 };
 var reduceFunction1 = function(result) {
-        return result ;
-	
+emit(result)
 };
+
 db.spells.mapReduce(
 	mapFunction1,
 	reduceFunction1,
@@ -27,3 +38,10 @@ db.spells.mapReduce(
 	});*/
 
 //	if(this.isWizard && this.level<4 && (data.components.indexOf(" V") != -1 ){
+
+
+	/*
+	
+	if(this.isWizard == true  && this.level<4 && (data.components.indexOf(" V") != -1 ){
+		emit(this.name,this.isWizard);
+	}*/
