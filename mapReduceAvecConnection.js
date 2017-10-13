@@ -2,7 +2,7 @@
 * Created by edmond on 2015-11-15.
 */
 
-var MongoClient = require('mongo').MongoClient,
+var MongoClient = require('mongodb').MongoClient(),
    test = require('assert');
 MongoClient.connect('mongodb://localhost:27017/graph_algorithms', function(err, db) {
 
