@@ -1,0 +1,17 @@
+
+CREATE TABLE Spell (idSpell int AUTO_INCREMENT NOT NULL, 
+level INTEGER, 
+isWizard BOOL, 
+spellResistance BOOL, 
+descritpion VARCHAR, 
+PRIMARY KEY (idSpell) );  
+CREATE TABLE Component (idComponent int AUTO_INCREMENT NOT NULL, 
+libelleComponent CHAR, 
+PRIMARY KEY (idComponent) );
+
+ CREATE TABLE Compose (
+idSpell INTEGER,
+idComponent INTEGER,
+FOREIGN KEY(idSpell) REFERENCES Spell(idSpell), 
+FOREIGN KEY(idComponent) REFERENCES Component(idComponent), 
+PRIMARY KEY (idSpell,  idComponent) );  
