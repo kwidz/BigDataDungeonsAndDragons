@@ -33,6 +33,12 @@ libelleComponent
 VALUES(
 "M"
 );
+INSERT INTO Component (
+libelleComponent
+)
+VALUES(
+"O"
+);
 
 
 

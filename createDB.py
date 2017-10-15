@@ -20,21 +20,23 @@ for spell in myspells:
     data=[i,name,level,isWizard,spellResistance,description]
     #print(data)    
     c.execute('insert into Spell(idSpell,name,level,isWizard,spellResistance, description) values(?,?,?,?,?,?)',data)
+    other=False;
     for component in spell["components"]:
         if(component==" V"):
             data=[i,1]
             c.execute('insert into Compose values (?,?)', data)
-
         elif(component==" S"):
             data=[i,2]
             c.execute('insert into Compose values (?,?)', data)
         elif(component==" M"):
             data=[i,3]
             c.execute('insert into Compose values (?,?)', data)
-        else{
+        else:
             data=[i,4]
-            c.execute('insert into Compose values (?,?)', data)
-                }
+            if(other==False):
+                c.execute('insert into Compose values (?,?)', data)
+                other=True
+                
     i+=1
 conn.commit()
 c.close()
