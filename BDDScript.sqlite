@@ -1,13 +1,12 @@
-
-CREATE TABLE Spell (idSpell int AUTO_INCREMENT NOT NULL, 
+CREATE TABLE Spell (idSpell INTEGER PRIMARY KEY, 
 level INTEGER, 
-isWizard BOOL, 
-spellResistance BOOL, 
-descritpion VARCHAR, 
-PRIMARY KEY (idSpell) );  
-CREATE TABLE Component (idComponent int AUTO_INCREMENT NOT NULL, 
-libelleComponent CHAR, 
-PRIMARY KEY (idComponent) );
+name TEXT,
+isWizard INTEGER, 
+spellResistance INTEGER, 
+description TEXT);  
+
+CREATE TABLE Component (idComponent INTEGER PRIMARY KEY, 
+libelleComponent CHAR);
 
  CREATE TABLE Compose (
 idSpell INTEGER,
@@ -15,3 +14,31 @@ idComponent INTEGER,
 FOREIGN KEY(idSpell) REFERENCES Spell(idSpell), 
 FOREIGN KEY(idComponent) REFERENCES Component(idComponent), 
 PRIMARY KEY (idSpell,  idComponent) );  
+
+INSERT INTO Component (
+libelleComponent
+)
+VALUES(
+"V"
+);
+INSERT INTO Component (
+libelleComponent
+)
+VALUES(
+"S"
+);
+INSERT INTO Component (
+libelleComponent
+)
+VALUES(
+"M"
+);
+
+
+
+select s.name, s.idSpell as sid from Spell s 
+    inner join Compose c on s.idSpell = c.idSpell
+    where c.idComponent=1
+    and (Select count(*) from Compose where idSpell = sid)=1
+    and s.isWizard=1
+    and s.level<=4 ;
