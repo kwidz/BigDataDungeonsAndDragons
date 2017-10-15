@@ -41,4 +41,5 @@ select s.name, s.idSpell as sid from Spell s
     where c.idComponent=1
     and (Select count(*) from Compose where idSpell = sid)=1
     and s.isWizard=1
-    and s.level<=4 ;
+    and s.level<=4 
+    order by s.name;
