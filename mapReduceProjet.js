@@ -23,7 +23,7 @@ MongoClient.connect('mongodb://localhost:27017/DandDspells', function(err, db) {
    	}else{
    		sortUtilisable = false;
    	}
-   	var obj= {level:level, isWizard:isWizard,components:components,sortUtilisable:sortUtilisable};
+   	var obj= {level:level, isWizard:isWizard,components:components,sortUtilisable:sortUtilisable,description:description};
    	emit(this.name,obj);
 
    };
@@ -46,7 +46,7 @@ MongoClient.connect('mongodb://localhost:27017/DandDspells', function(err, db) {
    			  	if(docs[i].value != null){
    			  		var boolSortUtilisable = docs[i].value.sortUtilisable;
    				if(boolSortUtilisable == true){
-   					console.log(docs[i]._id);
+   					console.log(docs[i]._id + " : " + docs[i].value.description);
    				}
    			  	}
    			  }
