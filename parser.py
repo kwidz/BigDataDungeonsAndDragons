@@ -10,7 +10,7 @@ def generURL(a):
 
 data=[]
 for i in range(1,1972):
-    if(i!=1841):
+    if(i!=1841 and i!=1866):
         print(i)
         url = generURL(i)
         page = requests.get(url)
