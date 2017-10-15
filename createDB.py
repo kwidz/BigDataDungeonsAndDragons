@@ -25,12 +25,16 @@ for spell in myspells:
             data=[i,1]
             c.execute('insert into Compose values (?,?)', data)
 
-        if(component==" S"):
+        elif(component==" S"):
             data=[i,2]
             c.execute('insert into Compose values (?,?)', data)
-        if(component==" M"):
+        elif(component==" M"):
             data=[i,3]
             c.execute('insert into Compose values (?,?)', data)
+        else{
+            data=[i,4]
+            c.execute('insert into Compose values (?,?)', data)
+                }
     i+=1
 conn.commit()
 c.close()
