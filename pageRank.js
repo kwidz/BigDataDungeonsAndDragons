@@ -11,7 +11,7 @@ MongoClient.connect('mongodb://localhost:27017/DandDspells', function(err, db) {
    //Pour garder le chemin, enregistrer un backpointer.
    var graph =
        [
-           { _id:"PageA" ,  value:{ backpointer: "", changed: false, type: "full", poid: 0, pointeVers: ["PageB", "PageC"], estPointePar: ["PageC"]}},
+           { _id:"PageA" ,  value:{ backpointer: "", changed: false, type: "full", poid: 0.85, pointeVers: ["PageB", "PageC"], estPointePar: ["PageC"]}},
            { _id:"PageB", value:{ backpointer: "",changed: false,type: "full", poid: Infinity, pointeVers: ["PageC"], estPointePar: ["PageA"]}},
            {_id:"PageC",value:{ backpointer: "",changed: false,type: "full", poid: Infinity, pointeVers: ["PageA"], estPointePar: ["PageA","PageB"]}},
            { _id:"PageD", value:{ backpointer: "",changed: false,type: "full", poid: Infinity, pointeVers: ["PageC"], estPointePar: []}}
