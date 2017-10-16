@@ -10,6 +10,9 @@ def generURL(a):
 
 data=[]
 for i in range(1,1972):
+    #On évite les deux pages qui posent problème dans le site web. La page 1841 est une page vide, 
+    #la page 1866 est un doublon du sort buoyancy qui est déjà présent avant
+    #MongoDB ne supporte pas ce genre de doublons, nous l'avons donc supprimé
     if(i!=1841 and i!=1866):
         print(i)
         url = generURL(i)
