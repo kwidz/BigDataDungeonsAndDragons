@@ -38,7 +38,7 @@ MongoClient.connect('mongodb://localhost:27017/BddPageRank', function(err, db) {
           emit(name, 0); //Re-émettre la même chose
 
 
-           for (var i = 0; i < pointeVers.length; i++) {
+          for (var i = 0; i < pointeVers.length; i++) {
 
                var pagePointe = pointeVers[i]; //valere, julien etc
                //  print(adj, distance+1);
@@ -75,20 +75,41 @@ MongoClient.connect('mongodb://localhost:27017/BddPageRank', function(err, db) {
 
       }
 
-      collection.mapReduce(map, reduce, {out: {replace: "pageR"}}).then(function (collection)
-      {
-        collection.find().toArray()
-        .then(function (docs)
-        {
-         
-      console.log(docs);
+        //tf = test function
+       function bfs_iteration(i, max, cb)
+       {
+           // Peform the map reduce
+           collection.mapReduce(map, reduce, {out: {replace: "pageRank"}})
+           .then(function (collection)
+           {
+               collection.find().toArray()
+                   .then(function (docs)
+                   {
+                     console.log("VALEUR DE I = ", i);
+                       console.log(docs);
+                       console.log("************************************************************************");
+
+                       //1ere condition d'arrêt. Le graphe converge (algo fini)
+                       //Sinon, on a egalement un maximum d'iterations
+                       //Nombre max d'iterations atteint
+                      
+                       if (i == max){
+                           cb();
+                       }else {
+                                   bfs_iteration(i + 1, max, cb);
+                               }
+
+        
+                   })
+           })
+       }
+
+   bfs_iteration(0, 20, function fin() {
+       console.log("Fin");
+       db.close();
+   })
 
 
-      db.close();
-      console.log("fin");
     });
-      });
 
 });
-
-    });
