@@ -4,6 +4,8 @@ A small data base application for trying MongoDB features
 Ce projet se trouve sous la forme de 3 dossier, 1 pour chaque exercice du projet.
 Chaque dossier contient un README permettant de comprendre la hiérarchie de celui-ci.
 
+Après avoir effectué la requete, on se rend compte que le sort qui permet de libérer pitto est Liberating command.
+
 BDD_SQLITE
 ----------
 Ce dossier contient tout le code permettant de résoudre le problème de pitto avec BDD_SQLITE

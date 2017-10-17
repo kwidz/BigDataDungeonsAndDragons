@@ -57,9 +57,8 @@ for spell in myspells:
     name=spell["name"]
     level=int(spell["level"])
     isWizard=1 if (spell["isWizard"]) else 0
-    print(isWizard)
     spellResistance=1 if (spell["spell_resistance"]) else 0
-    description=str(["description"])
+    description=str(spell["description"])
     data=[i,name,level,isWizard,spellResistance,description]
     #print(data)    
     c.execute('insert into Spell(idSpell,name,level,isWizard,spellResistance, description) values(?,?,?,?,?,?)',data)
@@ -82,4 +81,21 @@ for spell in myspells:
                 
     i+=1
 conn.commit()
+#affichage du resultat de la requette
+
+sql = '''
+      select s.name, s.description ,s.idSpell as sid from Spell s
+    inner join Compose c on s.idSpell = c.idSpell
+    inner join Component co on c.idComponent = co.idComponent
+    where co.libelleComponent='V'
+    and (Select count(*) from Compose where idSpell = sid)=1
+    and s.isWizard=1
+    and s.level<=4
+    order by s.name; 
+      '''
+c.execute(sql)
+rows = c.fetchall()
+for row in rows:
+    name,description,identifiant=row
+    print(name)
 c.close()
